@@ -209,7 +209,7 @@
         data.reverse().forEach(blog => {
           const a = document.createElement("a");
           a.className = "blog";
-          a.href = "blog.html?id=" + blog.id;
+          a.href = "/blog.html?id=" + blog.id;
 
           a.innerHTML = `
             <div class="date">${blog.date}</div>
