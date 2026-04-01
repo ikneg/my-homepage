@@ -1,5 +1,4 @@
 <html>
-
 <head>
     <title>abkd-ikneg</title>
 
@@ -10,8 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital@0;1&display=swap" rel="stylesheet">
 
     <style>
-        html,
-        body {
+        html, body {
             padding: 0;
             margin: 0;
         }
@@ -62,29 +60,6 @@
             padding-top: 50px;
         }
 
-        .hero {
-            display: flex;
-            width: 100%;
-            height: 60vh;
-            align-items: center;
-        }
-
-        .heroText {
-            margin: 0 25px;
-        }
-
-        .heroText h2 {
-            font-size: 2em;
-            margin: 10px 0;
-            letter-spacing: 0.15em;
-        }
-
-        .heroText span {
-            color: #333;
-            font-size: 0.9em;
-            letter-spacing: 0.1em;
-        }
-
         /* ===== ブログ一覧 ===== */
         .blogs {
             display: grid;
@@ -111,12 +86,12 @@
             transition: 0.2s;
         }
 
-        .blog:hover {
-            opacity: 0.8;
-        }
-
         .blogs h2 {
             letter-spacing: 0.1em;
+        }
+
+        .blog:hover {
+            opacity: 0.8;
         }
 
         .blog .date {
@@ -142,38 +117,6 @@
             text-align: center;
             font-size: 0.9em;
             width: 80%;
-        }
-
-        .watchMore {
-            display: block;
-            width: fit-content;
-            margin: 30px auto 50px;
-
-            padding: 12px 28px;
-            border: 1px solid #000;
-            border-radius: 5px;
-            /* ← ちょい今風 */
-
-            text-decoration: none;
-            color: #000;
-            font-size: 0.9em;
-            letter-spacing: 0.1em;
-
-            transition: all 0.2s ease;
-        }
-
-        /* ホバー */
-        .watchMore:hover {
-            background: #000;
-            color: #fff;
-            transform: translateY(-2px);
-            /* ちょい浮く */
-        }
-
-        /* 押したとき */
-        .watchMore:active {
-            transform: translateY(0);
-            opacity: 0.7;
         }
 
         /* ===== スマホ ===== */
@@ -218,7 +161,6 @@
                 opacity: 0;
                 transform: translateY(10px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -242,68 +184,59 @@
             </div>
 
             <div class="menu">
-                <a href="/links">links</a>
-                <a href="/blog">blog</a>
+                <a href="/links/">links</a>
+                <a href="/blog/">blog</a>
             </div>
         </div>
 
         <div class="content">
 
-            <div class="hero">
-                <div class="heroText">
-                    <h2>いろいろやります</h2>
-                    <span>iknegのホームページ</span>
-                </div>
-            </div>
-
             <div class="blogs">
-                <h2>BLOG</h2>
+                <h2>blog</h2>
                 <!-- JSでここに追加される -->
             </div>
-            <a href="/blog" s="watchMore">もっと見る</a>
 
         </div>
     </div>
 
     <!-- ===== JSON読み込み ===== -->
     <script>
-        fetch("blogs.json")
-            .then(res => res.json())
-            .then(data => {
-                const container = document.querySelector(".blogs");
+    fetch("/blogs.json")
+      .then(res => res.json())
+      .then(data => {
+        const container = document.querySelector(".blogs");
 
-                data.reverse().slice(0, 4).forEach(blog => {
-                    const a = document.createElement("a");
-                    a.className = "blog";
-                    a.href = "blog.html?id=" + blog.id;
+        data.reverse().forEach(blog => {
+          const a = document.createElement("a");
+          a.className = "blog";
+          a.href = "blog.html?id=" + blog.id;
 
-                    a.innerHTML = `
+          a.innerHTML = `
             <div class="date">${blog.date}</div>
             <div class="title">${blog.title}</div>
             <div class="content">${blog.content}</div>
           `;
 
-                    container.appendChild(a);
-                });
-            });
+          container.appendChild(a);
+        });
+      });
     </script>
 
     <!-- ===== ページ遷移アニメーション ===== -->
     <script>
-        document.querySelectorAll("a").forEach(link => {
-            link.addEventListener("click", function (e) {
-                if (link.hostname === location.hostname) {
-                    e.preventDefault();
-                    document.body.classList.add("fade-out");
+    document.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", function(e) {
+            if (link.hostname === location.hostname) {
+                e.preventDefault();
+                document.body.classList.add("fade-out");
 
-                    setTimeout(() => {
-                        window.location = link.href;
-                    }, 300);
-                }
-            });
+                setTimeout(() => {
+                    window.location = link.href;
+                }, 300);
+            }
         });
+    });
     </script>
 
 </body>
-
 </html>

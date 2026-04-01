@@ -1,0 +1,218 @@
+<html>
+<head>
+    <title>blog</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital@0;1&display=swap" rel="stylesheet">
+
+    <style>
+        html, body {
+            padding: 0;
+            margin: 0;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        /* ===== コンテナ ===== */
+        .container {
+            width: 768px;
+            margin: 0 auto;
+        }
+
+        /* ===== トップバー ===== */
+        .topbar {
+            font-family: 'Source Code Pro';
+            background-color: #fff;
+            position: fixed;
+
+            left: 50%;
+            transform: translateX(-50%);
+            width: 768px;
+            height: 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+        }
+
+        .topbar a {
+            margin: 0 5px;
+            color: #000;
+            text-decoration: none;
+        }
+
+        .topbar a:hover {
+            color: #333;
+        }
+
+        /* ===== メイン ===== */
+        .content {
+            padding-top: 60px;
+        }
+
+        /* ===== 記事 ===== */
+        .article {
+            padding: 20px;
+        }
+
+        .article-title {
+            font-size: 2em;
+            margin-bottom: 10px;
+            letter-spacing: 0.1em;
+        }
+
+        .article-date {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .article-body {
+            font-size: 1em;
+            line-height: 1.8;
+            letter-spacing: 0.05em;
+            white-space: pre-wrap; /* 改行反映 */
+        }
+
+        /* ===== 戻るボタン ===== */
+        .back {
+            display: inline-block;
+            margin: 20px;
+            padding: 8px 16px;
+            border: 1px solid #000;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #000;
+            transition: 0.2s;
+        }
+
+        .back:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        /* ===== スマホ ===== */
+        @media (max-width: 768px) {
+            .container {
+                width: 100%;
+            }
+
+            .topbar {
+                width: 100%;
+                left: 0;
+                transform: none;
+                padding: 0 10px;
+            }
+
+            .article {
+                padding: 15px;
+            }
+
+            .article-title {
+                font-size: 1.5em;
+            }
+        }
+
+        /* ===== アニメーション ===== */
+        body {
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-out {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: 0.3s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- トップバー -->
+        <div class="topbar">
+            <div class="home">
+                <a href="index.html">ikneg</a>
+            </div>
+
+            <div class="menu">
+                <a href="links.html">links</a>
+                <a href="index.html">blog</a>
+            </div>
+        </div>
+
+        <!-- コンテンツ -->
+        <div class="content">
+
+            <a href="index.html" class="back">← 戻る</a>
+
+            <div class="article">
+                <div class="article-title" id="title"></div>
+                <div class="article-date" id="date"></div>
+                <div class="article-body" id="body"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ===== JSON読み込み ===== -->
+    <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    fetch("blogs.json")
+      .then(res => res.json())
+      .then(data => {
+        const blog = data.find(b => b.id == id);
+
+        if (!blog) {
+            document.getElementById("title").textContent = "記事が見つかりません";
+            return;
+        }
+
+        document.getElementById("title").textContent = blog.title;
+        document.getElementById("date").textContent = blog.date;
+        document.getElementById("body").textContent = blog.body;
+      });
+    </script>
+
+    <!-- ===== ページ遷移アニメーション ===== -->
+    <script>
+    document.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", function(e) {
+            if (link.hostname === location.hostname) {
+                e.preventDefault();
+                document.body.classList.add("fade-out");
+
+                setTimeout(() => {
+                    window.location = link.href;
+                }, 300);
+            }
+        });
+    });
+    </script>
+
+</body>
+</html>
