@@ -201,7 +201,7 @@
 
     <!-- ===== JSON読み込み ===== -->
     <script>
-    fetch("/blogs.json")
+    fetch("../blogs.json")
       .then(res => res.json())
       .then(data => {
         const container = document.querySelector(".blogs");
