@@ -1,191 +1,191 @@
 <html>
-
-<head>
+  <head>
     <title>abkd-ikneg</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@100..900&family=Noto+Sans+JP:wght@100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
-        html,
-        body {
-            font-family: "Noto Sans JP";
-            padding: 0;
-            margin: 0;
+      html,
+      body {
+        font-family: "M Plus 1";
+        padding: 0;
+        margin: 0;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      /* ===== PC ===== */
+      .container {
+        width: 768px;
+        margin: 0 auto;
+      }
+
+      .topbar {
+        font-family: "Source Code Pro";
+        background-color: #fff;
+        position: fixed;
+
+        left: 50%;
+        transform: translateX(-50%);
+        /* ← 中央に戻す */
+
+        width: 768px;
+        /* ← containerと揃える */
+        height: 40px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+
+        z-index: 1000;
+      }
+
+      .topbar a {
+        margin: 0 5px;
+        color: #000;
+        text-decoration: none;
+      }
+
+      .topbar a:hover {
+        color: #333;
+      }
+
+      .content {
+        display: flex;
+        padding-top: 50px;
+        width: 100%;
+        height: calc(100vh - 50px);
+      }
+
+      .links {
+        border: 1px solid #333;
+        text-align: center;
+        width: 390px;
+        margin: auto;
+        padding: 20px 0;
+        border-radius: 10px;
+      }
+
+      .link {
+        display: flex;
+        align-items: center;
+        width: 90%;
+        margin: 10px 5%;
+        border: 1px solid #333;
+        padding: 10px 0;
+        border-radius: 5px;
+        text-decoration: none;
+        color: #000;
+      }
+
+      .link:hover {
+        opacity: 0.8;
+      }
+
+      .link span {
+        margin: 0 auto;
+        font-size: 0.9em;
+      }
+
+      /* ===== ページアニメーション ===== */
+      body {
+        animation: fadeIn 0.4s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
         }
 
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
+      }
 
-        /* ===== PC ===== */
+      .fade-out {
+        opacity: 0;
+        transform: translateY(10px);
+        transition: 0.3s;
+      }
+
+      /* ===== スマホ ===== */
+      @media (max-width: 768px) {
         .container {
-            width: 768px;
-            margin: 0 auto;
+          width: 100%;
         }
 
         .topbar {
-            font-family: 'Source Code Pro';
-            background-color: #fff;
-            position: fixed;
-
-            left: 50%;
-            transform: translateX(-50%);
-            /* ← 中央に戻す */
-
-            width: 768px;
-            /* ← containerと揃える */
-            height: 40px;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-
-            z-index: 1000;
+          width: 100%;
+          left: 0;
+          transform: none;
         }
-
-        .topbar a {
-            margin: 0 5px;
-            color: #000;
-            text-decoration: none;
-        }
-
-        .topbar a:hover {
-            color: #333;
-        }
-
-        .content {
-            display: flex;
-            padding-top: 50px;
-            width: 100%;
-            height: calc(100vh - 50px);
-        }
-
-        .links {
-            border: 1px solid #333;
-            text-align: center;
-            width: 390px;
-            margin: auto;
-            padding: 20px 0;
-            border-radius: 10px;
-        }
-
-        .link {
-            display: flex;
-            align-items: center;
-            width: 90%;
-            margin: 10px 5%;
-            border: 1px solid #333;
-            padding: 10px 0;
-            border-radius: 5px;
-            text-decoration: none;
-            color: #000;
-        }
-
-        .link:hover {
-            opacity: 0.8;
-        }
-
-        .link span {
-            margin: 0 auto;
-            font-size: 0.9em;
-        }
-
-        /* ===== ページアニメーション ===== */
-        body {
-            animation: fadeIn 0.4s ease;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-out {
-            opacity: 0;
-            transform: translateY(10px);
-            transition: 0.3s;
-        }
-
-        /* ===== スマホ ===== */
-        @media (max-width: 768px) {
-            .container {
-                width: 100%;
-            }
-
-            .topbar {
-                width: 100%;
-                left: 0;
-                transform: none;
-            }
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="container">
-
-        <div class="topbar">
-            <div class="home">
-                <a href="/">ikneg</a>
-            </div>
-
-            <div class="menu">
-                <a href="/links/">links</a>
-                <a href="/blog/">blog</a>
-            </div>
+      <div class="topbar">
+        <div class="home">
+          <a href="/">ikneg</a>
         </div>
 
-        <div class="content">
-            <div class="links">
-                <h2>links</h2>
-                <a class="link" href="https://www.youtube.com/@abkd-2">
-                    <span>youtube</span>
-                </a>
-                <a class="link" href="https://x.com/abkd1116">
-                    <span>x(twitter)</span>
-                </a>
-                <a class="link" href="https://github.com/ikneg">
-                    <span>github</span>
-                </a>
-                <a class="link" href="https://note.com/abkd_2">
-                    <span>note</span>
-                </a>
-                <a class="link" href="https://note.com/abkd_2">
-                    <span>note</span>
-                </a>
-            </div>
+        <div class="menu">
+          <a href="/links/">links</a>
+          <a href="/blog/">blog</a>
         </div>
+      </div>
+
+      <div class="content">
+        <div class="links">
+          <h2>links</h2>
+          <a class="link" href="https://www.youtube.com/@abkd-2">
+            <span>youtube</span>
+          </a>
+          <a class="link" href="https://x.com/abkd1116">
+            <span>x(twitter)</span>
+          </a>
+          <a class="link" href="https://github.com/ikneg">
+            <span>github</span>
+          </a>
+          <a class="link" href="https://note.com/abkd_2">
+            <span>note</span>
+          </a>
+          <a class="link" href="https://note.com/abkd_2">
+            <span>note</span>
+          </a>
+        </div>
+      </div>
     </div>
-</body>
+  </body>
 
-<!-- ===== ページ遷移アニメーション ===== -->
-<script>
-    document.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", function (e) {
-            if (link.hostname === location.hostname) {
-                e.preventDefault();
-                document.body.classList.add("fade-out");
+  <!-- ===== ページ遷移アニメーション ===== -->
+  <script>
+    document.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", function (e) {
+        if (link.hostname === location.hostname) {
+          e.preventDefault();
+          document.body.classList.add("fade-out");
 
-                setTimeout(() => {
-                    window.location = link.href;
-                }, 300);
-            }
-        });
+          setTimeout(() => {
+            window.location = link.href;
+          }, 300);
+        }
+      });
     });
-</script>
-
+  </script>
 </html>

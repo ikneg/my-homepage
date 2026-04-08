@@ -1,314 +1,310 @@
 <html>
-
-<head>
+  <head>
     <title>abkd-ikneg</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital@0;1&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
-        rel="stylesheet">
+      href="https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@100..900&family=Noto+Sans+JP:wght@100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
-        html,
-        body {
-            font-family: "Noto Sans JP";
-            padding: 0;
-            margin: 0;
-        }
+      html,
+      body {
+        font-family: "M Plus 1";
+        padding: 0;
+        margin: 0;
+      }
 
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-        }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
 
-        /* ===== PC ===== */
+      /* ===== PC ===== */
+      .container {
+        width: 768px;
+        margin: 0 auto;
+      }
+
+      .topbar {
+        font-family: "Source Code Pro";
+        background-color: #fff;
+        position: fixed;
+
+        left: 50%;
+        transform: translateX(-50%);
+
+        width: 768px;
+        height: 40px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+
+        z-index: 1000;
+        border-bottom: 1px solid #eee;
+      }
+
+      .topbar a {
+        margin: 0 5px;
+        color: #000;
+        text-decoration: none;
+      }
+
+      .topbar a:hover {
+        color: #333;
+      }
+
+      .content {
+        padding-top: 50px;
+      }
+
+      .hero {
+        display: flex;
+        width: 100%;
+        height: 60vh;
+        align-items: center;
+      }
+
+      .heroText {
+        margin: 0 25px;
+      }
+
+      .heroText h2 {
+        font-size: 2em;
+        margin: 10px 0;
+        letter-spacing: 0.15em;
+      }
+
+      .heroText span {
+        color: #333;
+        font-size: 0.9em;
+        letter-spacing: 0.1em;
+      }
+
+      /* ===== ブログ一覧 ===== */
+      .blogs {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin: 10px;
+      }
+
+      .blogs h2 {
+        grid-column: 1 / -1;
+      }
+
+      /* ===== ブログカード ===== */
+      .blog {
+        position: relative;
+        border: 1px solid #333;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        padding: 10px;
+        border-radius: 8px;
+        overflow: hidden;
+        text-decoration: none;
+        color: #000;
+        transition: 0.2s;
+      }
+
+      .blog:hover {
+        opacity: 0.8;
+      }
+
+      .blogs h2 {
+        letter-spacing: 0.1em;
+      }
+
+      .blog .date {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 0.8em;
+        color: #666;
+      }
+
+      .blog .title {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-weight: bold;
+      }
+
+      .blog .content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-size: 0.9em;
+        width: 80%;
+      }
+
+      .watchMore {
+        display: block;
+        width: fit-content;
+        margin: 30px auto 50px;
+
+        padding: 12px 28px;
+        border: 1px solid #000;
+        border-radius: 5px;
+        /* ← ちょい今風 */
+
+        text-decoration: none;
+        color: #000;
+        font-size: 0.9em;
+        letter-spacing: 0.1em;
+
+        transition: all 0.2s ease;
+      }
+
+      /* ホバー */
+      .watchMore:hover {
+        background: #000;
+        color: #fff;
+        transform: translateY(-2px);
+        /* ちょい浮く */
+      }
+
+      /* 押したとき */
+      .watchMore:active {
+        transform: translateY(0);
+        opacity: 0.7;
+      }
+
+      /* ===== スマホ ===== */
+      @media (max-width: 768px) {
         .container {
-            width: 768px;
-            margin: 0 auto;
+          width: 100%;
         }
 
         .topbar {
-            font-family: 'Source Code Pro';
-            background-color: #fff;
-            position: fixed;
-
-            left: 50%;
-            transform: translateX(-50%);
-
-            width: 768px;
-            height: 40px;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-
-            z-index: 1000;
-            border-bottom: 1px solid #eee;
-        }
-
-        .topbar a {
-            margin: 0 5px;
-            color: #000;
-            text-decoration: none;
-        }
-
-        .topbar a:hover {
-            color: #333;
-        }
-
-        .content {
-            padding-top: 50px;
+          width: 100%;
+          left: 0;
+          transform: none;
+          padding: 0 10px;
         }
 
         .hero {
-            display: flex;
-            width: 100%;
-            height: 60vh;
-            align-items: center;
+          height: 40vh;
         }
 
         .heroText {
-            margin: 0 25px;
+          margin: 0 15px;
         }
 
         .heroText h2 {
-            font-size: 2em;
-            margin: 10px 0;
-            letter-spacing: 0.15em;
+          font-size: 1.5em;
         }
 
-        .heroText span {
-            color: #333;
-            font-size: 0.9em;
-            letter-spacing: 0.1em;
-        }
-
-        /* ===== ブログ一覧 ===== */
         .blogs {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin: 10px;
+          grid-template-columns: 1fr;
+          margin: 10px 0;
+          padding: 0 10px;
+        }
+      }
+
+      /* ===== ページアニメーション ===== */
+      body {
+        animation: fadeIn 0.4s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
         }
 
-        .blogs h2 {
-            grid-column: 1 / -1;
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
+      }
 
-        /* ===== ブログカード ===== */
-        .blog {
-            position: relative;
-            border: 1px solid #333;
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            padding: 10px;
-            border-radius: 8px;
-            overflow: hidden;
-            text-decoration: none;
-            color: #000;
-            transition: 0.2s;
-        }
-
-        .blog:hover {
-            opacity: 0.8;
-        }
-
-        .blogs h2 {
-            letter-spacing: 0.1em;
-        }
-
-        .blog .date {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 0.8em;
-            color: #666;
-        }
-
-        .blog .title {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-weight: bold;
-        }
-
-        .blog .content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            font-size: 0.9em;
-            width: 80%;
-        }
-
-        .watchMore {
-            display: block;
-            width: fit-content;
-            margin: 30px auto 50px;
-
-            padding: 12px 28px;
-            border: 1px solid #000;
-            border-radius: 5px;
-            /* ← ちょい今風 */
-
-            text-decoration: none;
-            color: #000;
-            font-size: 0.9em;
-            letter-spacing: 0.1em;
-
-            transition: all 0.2s ease;
-        }
-
-        /* ホバー */
-        .watchMore:hover {
-            background: #000;
-            color: #fff;
-            transform: translateY(-2px);
-            /* ちょい浮く */
-        }
-
-        /* 押したとき */
-        .watchMore:active {
-            transform: translateY(0);
-            opacity: 0.7;
-        }
-
-        /* ===== スマホ ===== */
-        @media (max-width: 768px) {
-            .container {
-                width: 100%;
-            }
-
-            .topbar {
-                width: 100%;
-                left: 0;
-                transform: none;
-                padding: 0 10px;
-            }
-
-            .hero {
-                height: 40vh;
-            }
-
-            .heroText {
-                margin: 0 15px;
-            }
-
-            .heroText h2 {
-                font-size: 1.5em;
-            }
-
-            .blogs {
-                grid-template-columns: 1fr;
-                margin: 10px 0;
-                padding: 0 10px;
-            }
-        }
-
-        /* ===== ページアニメーション ===== */
-        body {
-            animation: fadeIn 0.4s ease;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-out {
-            opacity: 0;
-            transform: translateY(10px);
-            transition: 0.3s;
-        }
-
+      .fade-out {
+        opacity: 0;
+        transform: translateY(10px);
+        transition: 0.3s;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="container">
-
-        <div class="topbar">
-            <div class="home">
-                <a href="/">ikneg</a>
-            </div>
-
-            <div class="menu">
-                <a href="/links">links</a>
-                <a href="/blog">blog</a>
-            </div>
+      <div class="topbar">
+        <div class="home">
+          <a href="/">ikneg</a>
         </div>
 
-        <div class="content">
-
-            <div class="hero">
-                <div class="heroText">
-                    <h2>iknegのホームページ</h2>
-                    <span>いろいろやります</span>
-                </div>
-            </div>
-
-            <div class="blogs">
-                <h2>BLOG</h2>
-                <!-- JSでここに追加される -->
-            </div>
-            <a href="/blog" class="watchMore">もっと見る</a>
-
+        <div class="menu">
+          <a href="/links">links</a>
+          <a href="/blog">blog</a>
         </div>
+      </div>
+
+      <div class="content">
+        <div class="hero">
+          <div class="heroText">
+            <h2>iknegのホームページ</h2>
+            <span>いろいろやります</span>
+          </div>
+        </div>
+
+        <div class="blogs">
+          <h2>BLOG</h2>
+          <!-- JSでここに追加される -->
+        </div>
+        <a href="/blog" class="watchMore">もっと見る</a>
+      </div>
     </div>
 
     <!-- ===== JSON読み込み ===== -->
     <script>
-        fetch("blogs.json")
-            .then(res => res.json())
-            .then(data => {
-                const container = document.querySelector(".blogs");
+      fetch("blogs.json")
+        .then((res) => res.json())
+        .then((data) => {
+          const container = document.querySelector(".blogs");
 
-                data.reverse().slice(0, 4).forEach(blog => {
-                    const a = document.createElement("a");
-                    a.className = "blog";
-                    a.href = "blog.html?id=" + blog.id;
+          data
+            .reverse()
+            .slice(0, 4)
+            .forEach((blog) => {
+              const a = document.createElement("a");
+              a.className = "blog";
+              a.href = "blog.html?id=" + blog.id;
 
-                    a.innerHTML = `
+              a.innerHTML = `
             <div class="date">${blog.date}</div>
             <div class="title">${blog.title}</div>
             <div class="content">${blog.content}</div>
           `;
 
-                    container.appendChild(a);
-                });
-            });
-    </script>
-
-    <!-- ===== ページ遷移アニメーション ===== -->
-    <script>
-        document.querySelectorAll("a").forEach(link => {
-            link.addEventListener("click", function (e) {
-                if (link.hostname === location.hostname) {
-                    e.preventDefault();
-                    document.body.classList.add("fade-out");
-
-                    setTimeout(() => {
-                        window.location = link.href;
-                    }, 300);
-                }
+              container.appendChild(a);
             });
         });
     </script>
 
-</body>
+    <!-- ===== ページ遷移アニメーション ===== -->
+    <script>
+      document.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", function (e) {
+          if (link.hostname === location.hostname) {
+            e.preventDefault();
+            document.body.classList.add("fade-out");
 
+            setTimeout(() => {
+              window.location = link.href;
+            }, 300);
+          }
+        });
+      });
+    </script>
+  </body>
 </html>
